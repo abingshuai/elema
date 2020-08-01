@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ifsaid.shark.mapper.StoreHouseMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.ifsaid.shark.entity.StoreHouse">
+		<id column="id" property="id" />
+		<result column="area" property="area" />
+		<result column="name" property="name" />
+		<result column="manager" property="manager" />
+		<result column="phone" property="phone" />
+		<result column="status" property="status" />
+		<result column="max" property="max" />
+
+		<result column="stock" property="stock" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+
+	<select id="commonSearch" resultMap="BaseResultMap">
+		select * from tb_store_house
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				or area like concat('%',#{keyword},'%')
+				or name like concat('%',#{keyword},'%')
+				or manager like concat('%',#{keyword},'%')
+				or phone like concat('%',#{keyword},'%')
+			</if>
+			<if test="status!=null and status!=''">
+			or status = #{status}
+			</if>
+
+		</where>
+	</select>
+	<sql id="Base_Column_List">
+        id, area, name, manager, phone, status, max, stock,address
+    </sql>
+	<select id="highSearch" resultMap="BaseResultMap">
+		select * from tb_store_house
+		<where>
+			<if test="name!=null and name!=''">
+				and name like concat('%',#{name},'%')
+			</if>
+			<if test="area!=null and area!=''">
+				and area =#{area}
+			</if>
+			<if test="manager!=null and manager!=''">
+				and manager like concat('%',#{manager},'%')
+			</if>
+			<if test="area!=null and area!=''">
+				and area like concat('%',#{area},'%')
+			</if>
+			<if test="address!=null and address!=''">
+				and address like concat('%',#{address},'%')
+			</if>
+			<if test="phone!=null and phone!=''">
+				and phone like concat('%',#{phone},'%')
+			</if>
+
+		</where>
+	</select>
+	<select id="chooseAvailableStoreHouse" resultMap="BaseResultMap">
+		select * from tb_store_house
+		<where>
+			and status=1
+			and IFNULL(0,stock) +#{nums} &lt; max
+		</where>
+	</select>
+
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ifsaid.shark.mapper.ContactMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.ifsaid.shark.entity.Contact">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="company" property="company" />
+		<result column="address" property="address" />
+		<result column="phone" property="phone" />
+		<result column="job" property="job" />
+		<result column="user_id" property="userId" />
+		<result column="create_time" property="createTime" />
+		<result column="last_update_time" property="lastUpdateTime" />
+	</resultMap>
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+        id, name, company,job, address, phone, user_id AS userId
+</sql>
+	<select id="commonSearch" resultMap="BaseResultMap">
+		select * from tb_contact
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				or name like concat('%',#{keyword},'%')
+				or company like concat('%',#{keyword},'%')
+				or job like concat('%',#{keyword},'%')
+				or address like concat('%',#{keyword},'%')
+				or phone like concat('%',#{keyword},'%')
+			</if>
+			and user_id = #{user_id}
+		</where>
+	</select>
+	<select id="highSearch" resultMap="BaseResultMap">
+		select * from tb_contact
+		<where>
+			<if test="name!=null and name!=''">
+				and name like concat('%',#{name},'%')
+			</if>
+			<if test="company!=null and company!=''">
+				and level =#{company}
+			</if>
+			<if test="job!=null and job!=''">
+				and job like concat('%',#{job},'%')
+			</if>
+			<if test="address!=null and address!=''">
+				and address like concat('%',#{address},'%')
+			</if>
+			<if test="phone!=null and phone!=''">
+				and phone like concat('%',#{phone},'%')
+			</if>
+			and user_id = #{user_id}
+		</where>
+	</select>
+
+</mapper>
+
