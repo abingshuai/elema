@@ -43,7 +43,7 @@ export const constantRoutes = [
     ]
   },
 
-  
+
 
   {
     path: '/login',
@@ -143,6 +143,36 @@ export const asyncRouterMap = [
     ]
   },
   {
+    path: '/goods',
+    name: 'Goods',
+    component: Layout,
+    redirect: '/goods/index',
+    meta: {
+      resources: 'goods',
+      title: '商品管理'
+    },
+    children: [
+      {
+        path: 'list',
+        name: 'GoodsList',
+        component: () => import('@/views/goods/list/index'),
+        meta: {
+          resources: 'goods_list',
+          title: '商品列表'
+        }
+      },
+      {
+        path: 'type',
+        name: 'GoodsType',
+        component: () => import('@/views/goods/type/index'),
+        meta: {
+          resources: 'goods_type',
+          title: '商品分类'
+        }
+      }
+    ]
+  },
+  {
     path: '/dealer',
     name: 'Dealer',
     component: Layout,
@@ -222,7 +252,7 @@ export const asyncRouterMap = [
       title: '系统设置'
     },
     children: [
-  
+
       {
         path: 'dictionary',
         component: () => import('@/views/sys/dictionary/index'),
