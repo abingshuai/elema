@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ifsaid.shark.mapper.GoodsClassifyMapper" >
+  <resultMap id="BaseResultMap" type="com.ifsaid.shark.entity.GoodsClassify" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="deleted" property="deleted" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, create_user, create_time, update_user, last_update_time, deleted
+  </sql>
+  <select id="getAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_goods_classify
+    where deleted= 0
+  </select>
+  <select id="selectByKeywords" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_goods_classify
+    <if test="keywords != null">
+      WHERE CONCAT(`name`) LIKE CONCAT('%',#{keywords},'%')
+    </if>
+    and deleted = 0
+  </select>
+  <update id="deleteTypeById" parameterType="java.lang.Integer">
+    update tb_goods_classify
+    set deleted = 1
+    where id = #{id}
+  </update>
+  <update id="updateType" parameterType="com.ifsaid.shark.entity.GoodsClassify" >
+    update tb_goods_classify
+    set name = #{name,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=BIGINT},
+      update_user = #{updateUser,jdbcType=BIGINT},
+      deleted = #{deleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

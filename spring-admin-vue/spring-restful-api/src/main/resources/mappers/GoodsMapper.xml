@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ifsaid.shark.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.ifsaid.shark.entity.Goods" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="goods_classify_id" property="goodsClassifyId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="origin_price" property="originPrice" jdbcType="DECIMAL" />
+    <result column="sell_price" property="sellPrice" jdbcType="DECIMAL" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="stock" property="stock" jdbcType="INTEGER" />
+    <result column="limit_num" property="limitNum" jdbcType="INTEGER" />
+    <result column="total_sales" property="totalSales" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="deleted" property="deleted" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_classify_id, name, description, img, origin_price, sell_price, discount,
+    stock, limit_num, total_sales, status, create_user, create_time, update_user, last_update_time,
+    deleted
+  </sql>
+  <select id="getAll" resultMap="BaseResultMap">
+    select
+    tg.id,goods_classify_id,
+    (select tgc.name from tb_goods_classify tgc where tgc.id = tg.goods_classify_id) as classifyName,
+    tg.name, description, img, origin_price, sell_price, discount,
+    stock, limit_num, total_sales, status, tg.create_user, tg.create_time, tg.update_user, tg.last_update_time,
+    tg.deleted
+    from tb_goods tg
+    where tg.deleted= 0
+  </select>
+  <select id="selectByKeywords" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    tg.id,goods_classify_id,
+    (select tgc.name from tb_goods_classify tgc where tgc.id = tg.goods_classify_id) as classifyName,
+    tg.name, description, img, origin_price, sell_price, discount,
+    stock, limit_num, total_sales, status, tg.create_user, tg.create_time, tg.update_user, tg.last_update_time,
+    tg.deleted
+    from tb_goods tg
+    <if test="keywords != null">
+      WHERE CONCAT(tg.name,tg.description) LIKE CONCAT('%',#{keywords},'%')
+    </if>
+    and tg.deleted = 0
+  </select>
+  <update id="deleteGoodsById" parameterType="java.lang.Integer">
+    update tb_goods
+    set deleted = 1
+    where id = #{id}
+  </update>
+  <insert id="saveGoods" parameterType="com.ifsaid.shark.entity.Goods">
+    insert into tb_goods (goods_classify_id,name,description,img,origin_price,sell_price,discount,stock,limit_num,total_sales,status,create_user,update_user,deleted)
+    values
+    (#{goodsClassifyId},#{name},#{description},#{img},#{originPrice},#{sellPrice},#{discount},#{stock},#{limitNum},#{totalSales},#{status},#{createUser},#{updateUser},#{deleted})
+  </insert>
+  <update id="updateGoods" parameterType="com.ifsaid.shark.entity.Goods">
+    update tb_goods
+    set goods_classify_id = #{goodsClassifyId},name = #{name},description = #{description},
+        img = #{img},origin_price = #{originPrice},sell_price = #{sellPrice},discount = #{discount},
+        stock = #{stock},limit_num = #{limitNum},total_sales = #{totalSales},status = #{status},
+        create_user = #{createUser},update_user = #{updateUser}
+    where id = #{id}
+  </update>
+</mapper>

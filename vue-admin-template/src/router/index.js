@@ -173,6 +173,16 @@ export const asyncRouterMap = [
     ]
   },
   {
+    path: '/order',
+    name: 'Order',
+    component: Layout,
+    redirect: '/order/index',
+    meta: {
+      resources: 'order',
+      title: '订单管理'
+    },
+  },
+  {
     path: '/dealer',
     name: 'Dealer',
     component: Layout,

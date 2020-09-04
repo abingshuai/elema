@@ -126,6 +126,17 @@ export function showStatus(state) {
   return result
 }
 
+export function showGoodsStatus(state) {
+  // 判断状态是什么类型的
+  let result = ''
+  if (state === 1) {
+    result = '上架'
+  } else {
+    result = '下架'
+  }
+  return result
+}
+
 // 状态 显示过滤器
 export function formatDateTime(time) {
   var date = new Date(time)
