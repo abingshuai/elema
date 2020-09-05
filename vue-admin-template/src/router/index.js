@@ -181,6 +181,17 @@ export const asyncRouterMap = [
       resources: 'order',
       title: '订单管理'
     },
+    children: [
+      {
+        path: 'list',
+        name: 'OrderList',
+        component: () => import('@/views/order/list/index'),
+        meta: {
+          resources: 'order_list',
+          title: '订单管理'
+        }
+      },
+    ]
   },
   {
     path: '/dealer',
