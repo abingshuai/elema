@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ifsaid.shark.mapper.StatisticsMapper" >
+  <resultMap id="BaseResultMap" type="com.ifsaid.shark.entity.Statistics" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="user_count" property="userCount" jdbcType="BIGINT" />
+    <result column="goods_count" property="goodsCount" jdbcType="BIGINT" />
+    <result column="order_count" property="orderCount" jdbcType="BIGINT" />
+    <result column="sales_volume" property="salesVolume" jdbcType="DECIMAL" />
+    <result column="sales_quantity" property="salesQuantity" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="deleted" property="deleted" jdbcType="TINYINT" />
+    <result column="creator" property="creator" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modifier" property="modifier" jdbcType="BIGINT" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, date, user_count, goods_count, order_count, sales_volume, sales_quantity, status,
+    deleted, creator, create_time, modifier, last_update_time
+  </sql>
+  <insert id="insert">
+    insert into tb_statistics
+    (date,user_count,goods_count,order_count,sales_volume,sales_quantity,status,deleted,creator,create_time,modifier,last_update_time)
+    values
+    (#{date},#{userCount},#{goodsCount},#{orderCount},#{salesVolume},#{salesQuantity},#{status},#{deleted},#{creator},#{createTime},#{modifier},#{lastUpdateTime},)
+  </insert>
+  <select id="selectPerWeek" resultMap="BaseResultMap">
+    select * from tb_statistics where deleted = 0 order by date desc limit 7
+  </select>
+</mapper>

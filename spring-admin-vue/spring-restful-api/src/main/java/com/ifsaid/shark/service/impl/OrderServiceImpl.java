@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -44,5 +45,15 @@ public class OrderServiceImpl extends BaseServiceImpl<Order,Integer, OrderMapper
     @Override
     public List<OrderItem> getOrderItemByNo(String orderNo) {
         return orderItemMapper.getOrderItemByNo(orderNo);
+    }
+
+    @Override
+    public Long getOrderCount() {
+        return baseMapper.getOrderCount();
+    }
+
+    @Override
+    public BigDecimal getOrderPrice() {
+        return baseMapper.getOrderPrice();
     }
 }

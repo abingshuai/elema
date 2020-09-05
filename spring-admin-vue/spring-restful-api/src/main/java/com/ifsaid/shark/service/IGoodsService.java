@@ -17,4 +17,6 @@ public interface IGoodsService extends BaseService<Goods, Integer> {
     int updateGoods(Goods goods);
 
     int saveGoods(Goods goods);
+
+    Long getGoodsCount();
 }

@@ -66,4 +66,7 @@
         create_user = #{createUser},update_user = #{updateUser}
     where id = #{id}
   </update>
+  <select id="getGoodsCount" resultType="java.lang.Long">
+    select count(*) from tb_goods where deleted = 0
+  </select>
 </mapper>

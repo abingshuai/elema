@@ -36,4 +36,20 @@
     </if>
     and deleted = 0
   </select>
+
+  <select id="getOrderCount" resultType="java.lang.Long">
+    select count(*) from tb_order where deleted = 0
+  </select>
+
+  <select id="getOrderPrice" resultType="java.math.BigDecimal">
+    select sum(total_price) from tb_order where deleted = 0
+  </select>
+
+  <select id="getOrderCountByDate" resultType="java.lang.Long">
+    select count(*) from tb_order create_time between #{begin} and #{end} where deleted = 0
+  </select>
+
+  <select id="getOrderPriceByDate" resultType="java.math.BigDecimal">
+    select sum(total_price) from tb_order create_time between #{begin} and #{end} where deleted = 0
+  </select>
 </mapper>

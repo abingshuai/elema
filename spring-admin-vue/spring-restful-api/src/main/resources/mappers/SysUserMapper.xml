@@ -38,4 +38,7 @@
         </foreach>
     </insert>
 
+    <select id="getUserCount" resultType="java.lang.Long">
+        select count(*) from tb_sys_user
+    </select>
 </mapper>

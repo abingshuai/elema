@@ -64,5 +64,10 @@ public class GoodsServiceImpl extends BaseServiceImpl<Goods,Integer, GoodsMapper
         return goodsMapper.saveGoods(goods);
     }
 
+    @Override
+    public Long getGoodsCount() {
+        return baseMapper.getGoodsCount();
+    }
+
 
 }

@@ -51,4 +51,6 @@ public interface SysUserMapper extends BaseMapper<SysUser, Integer> {
      */
     int deleteHaveRoles(Integer uid);
 
+
+    Long getUserCount();
 }

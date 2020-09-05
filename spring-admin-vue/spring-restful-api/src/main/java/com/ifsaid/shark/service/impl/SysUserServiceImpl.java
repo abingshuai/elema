@@ -207,6 +207,11 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser, Integer, SysUse
         return result;
     }
 
+    @Override
+    public Long getUserCount() {
+        return baseMapper.getUserCount();
+    }
+
 
     @Transactional(rollbackFor = Exception.class)
     @Override
