@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 @ToString
 @AllArgsConstructor
@@ -21,7 +20,7 @@ public class Order extends BaseEntity implements Serializable {
 
     private String orderNo;
 
-    private Long userId;
+    private String userId;
 
     private Long addressId;
 
@@ -33,9 +32,9 @@ public class Order extends BaseEntity implements Serializable {
 
     private Integer totalQuantity;
 
-    private Byte status;
+    private Integer status;
 
-    private Byte deleted;
+    private Integer deleted;
 
     private Long creator;
 
@@ -58,11 +57,11 @@ public class Order extends BaseEntity implements Serializable {
         this.orderNo = orderNo == null ? null : orderNo.trim();
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -106,19 +105,19 @@ public class Order extends BaseEntity implements Serializable {
         this.totalQuantity = totalQuantity;
     }
 
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public Byte getDeleted() {
+    public Integer getDeleted() {
         return deleted;
     }
 
-    public void setDeleted(Byte deleted) {
+    public void setDeleted(Integer deleted) {
         this.deleted = deleted;
     }
 

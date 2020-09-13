@@ -69,5 +69,10 @@ public class GoodsServiceImpl extends BaseServiceImpl<Goods,Integer, GoodsMapper
         return baseMapper.getGoodsCount();
     }
 
+    @Override
+    public List<Goods> getAllByTypeId(Integer typeId) {
+        return goodsMapper.getAllByTypeId(typeId);
+    }
+
 
 }

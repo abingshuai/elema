@@ -12,7 +12,7 @@ public class OrderItem {
 
     private BigDecimal subTotal;
 
-    private Long goodsId;
+    private Integer goodsId;
 
     private String goodsName;
 
@@ -62,11 +62,11 @@ public class OrderItem {
         this.subTotal = subTotal;
     }
 
-    public Long getGoodsId() {
+    public Integer getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(Long goodsId) {
+    public void setGoodsId(Integer goodsId) {
         this.goodsId = goodsId;
     }
 

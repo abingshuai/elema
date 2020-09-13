@@ -16,4 +16,6 @@ public interface GoodsMapper extends BaseMapper<Goods,Integer> {
     int saveGoods(Goods goods);
 
     Long getGoodsCount();
+
+    List<Goods> getAllByTypeId(Integer typeId);
 }

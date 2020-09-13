@@ -7,4 +7,5 @@ import java.util.List;
 public interface OrderItemMapper {
     List<OrderItem> getOrderItemByNo(String orderNo);
 
+    int saveOrderItem(OrderItem orderItem);
 }

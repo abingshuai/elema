@@ -8,6 +8,8 @@ import com.ifsaid.shark.service.IGoodsClassifyService;
 import com.ifsaid.shark.service.IGoodsService;
 import com.ifsaid.shark.util.JsonResult;
 import com.ifsaid.shark.util.QueryParameter;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,7 @@ import java.math.BigDecimal;
  *商品分类
  * @author LINHAN
  */
+@Api(tags = "商品分类")
 @RestController
 @RequestMapping("/dms/type")
 public class GoodsClassifyController extends BaseController<GoodsClassify,Integer, IGoodsClassifyService> {
@@ -29,12 +32,14 @@ public class GoodsClassifyController extends BaseController<GoodsClassify,Intege
      * @param parameter
      * @return
      */
-    @RequestMapping("info/page")
+    @ApiOperation(value = "分页获取商品信息", notes = "分页获取商品信息")
+    @GetMapping("info/page")
     public JsonResult findAllInfoPage(QueryParameter parameter){
         PageInfo<GoodsClassify> page = goodsClassifyService.findAllPageInfo(parameter);
         return JsonResult.success(page.getTotal(), page.getList());
     }
 
+    @ApiOperation(value = "新增分类", notes = "新增分类")
     @PostMapping("saveType")
     public JsonResult<GoodsClassify> saveType(@RequestBody GoodsClassify goodsClassify){
         goodsClassify.setDeleted(0);
@@ -46,6 +51,7 @@ public class GoodsClassifyController extends BaseController<GoodsClassify,Intege
         }
     }
 
+    @ApiOperation(value = "修改分类", notes = "修改分类")
     @PutMapping("updateType")
     public JsonResult<GoodsClassify> updateType(@RequestBody GoodsClassify goodsClassify){
         try{
@@ -56,6 +62,7 @@ public class GoodsClassifyController extends BaseController<GoodsClassify,Intege
         }
     }
 
+    @ApiOperation(value = "删除分类", notes = "删除分类")
     @DeleteMapping("deleteType/{id}")
     public JsonResult<String> deleteType(@PathVariable("id") Integer id){
         try{

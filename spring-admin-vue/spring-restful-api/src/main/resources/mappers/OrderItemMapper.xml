@@ -28,4 +28,9 @@
     from tb_order_item
     where order_no = #{orderNo}
   </select>
+  <insert id="saveOrderItem" parameterType="com.ifsaid.shark.entity.OrderItem">
+    insert into tb_order_item (order_no,sub_total,goods_id,goods_name,goods_classify_name,goods_description,goods_img,goods_count,goods_price,deleted,creator,create_time,modifier,last_update_time)
+    values
+    (#{orderNo},#{subTotal},#{goodsId},#{goodsName},#{goodsClassifyName},#{goodsDescription},#{goodsImg},#{goodsCount},#{goodsPrice},#{deleted},#{creator},#{createTime},#{modifier},#{lastUpdateTime})
+  </insert>
 </mapper>

@@ -3,7 +3,6 @@ package com.ifsaid.shark.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ifsaid.shark.common.service.impl.BaseServiceImpl;
-import com.ifsaid.shark.entity.Goods;
 import com.ifsaid.shark.entity.Order;
 import com.ifsaid.shark.entity.OrderItem;
 import com.ifsaid.shark.mapper.OrderItemMapper;
@@ -22,6 +21,9 @@ public class OrderServiceImpl extends BaseServiceImpl<Order,Integer, OrderMapper
 
     @Autowired
     private OrderItemMapper orderItemMapper;
+
+    @Autowired
+    private OrderMapper orderMapper;
 
     @Override
     public PageInfo<Order> findAllPageInfo(QueryParameter parameter) {
@@ -48,6 +50,11 @@ public class OrderServiceImpl extends BaseServiceImpl<Order,Integer, OrderMapper
     }
 
     @Override
+    public int saveOrderItem(OrderItem orderItem) {
+        return orderItemMapper.saveOrderItem(orderItem);
+    }
+
+    @Override
     public Long getOrderCount() {
         return baseMapper.getOrderCount();
     }
@@ -55,5 +62,10 @@ public class OrderServiceImpl extends BaseServiceImpl<Order,Integer, OrderMapper
     @Override
     public BigDecimal getOrderPrice() {
         return baseMapper.getOrderPrice();
+    }
+
+    @Override
+    public List<Order> getOrderByStatus(String userId, Integer status) {
+        return orderMapper.getOrderByStatus(userId,status);
     }
 }

@@ -14,6 +14,10 @@ public interface IOrderService extends BaseService<Order, Integer> {
 
     List<OrderItem> getOrderItemByNo(String orderNo);
 
+    int saveOrderItem(OrderItem orderItem);
+
     Long getOrderCount();
     BigDecimal getOrderPrice();
+
+    List<Order> getOrderByStatus(String userId, Integer status);
 }

@@ -80,4 +80,7 @@ public interface SysUserService extends BaseService<SysUser, Integer> {
 
     Long getUserCount();
 
+    SysUser getAllById(String id);
+
+
 }

@@ -19,7 +19,7 @@ export function getGoodsPage(params) {
 }
 
 export function getAll() {
-  return request({ url: '/dms/goods/getAll', method: 'post' })
+  return request({ url: '/dms/goods/getAll', method: 'get' })
 }
 
 export function saveGoods(params) {

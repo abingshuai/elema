@@ -83,6 +83,9 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser, Integer, SysUse
     private PasswordEncoder passwordEncoder;
 
     @Autowired
+    private SysUserMapper sysUserMapper;
+
+    @Autowired
     @Lazy
     private RedisTemplate<String, Object> redisTemplate;
 
@@ -210,6 +213,11 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser, Integer, SysUse
     @Override
     public Long getUserCount() {
         return baseMapper.getUserCount();
+    }
+
+    @Override
+    public SysUser getAllById(String id) {
+        return sysUserMapper.getAllById(id);
     }
 
 
