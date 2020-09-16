@@ -78,4 +78,13 @@
     tg.deleted
     from tb_goods tg where status = 1 and tg.deleted = 0 and goods_classify_id = #{typeId}
   </select>
+
+  <select id="findAllById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select tg.id,goods_classify_id,
+    (select tgc.name from tb_goods_classify tgc where tgc.id = tg.goods_classify_id) as classifyName,
+    tg.name, description, img, origin_price, sell_price, discount,
+    stock, limit_num, total_sales, status, tg.create_user, tg.create_time, tg.update_user, tg.last_update_time,
+    tg.deleted
+    from tb_goods tg where status = 1 and tg.deleted = 0 and id = #{goodsId}
+  </select>
 </mapper>

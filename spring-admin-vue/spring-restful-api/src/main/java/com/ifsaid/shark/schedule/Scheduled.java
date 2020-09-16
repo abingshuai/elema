@@ -34,6 +34,7 @@ public class Scheduled {
         BigDecimal salesVolume = orderMapper.getOrderPriceByDate(begin,end);
         Statistics statistics = new Statistics();
         statistics.setDate(sqlDate);
+        statistics.setDeleted(0);
         statistics.setOrderCount(orderCount);
         statistics.setSalesVolume(salesVolume);
         statisticsMapper.insert(statistics);

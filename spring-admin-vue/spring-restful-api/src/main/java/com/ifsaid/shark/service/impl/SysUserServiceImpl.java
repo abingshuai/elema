@@ -220,6 +220,11 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser, Integer, SysUse
         return sysUserMapper.getAllById(id);
     }
 
+    @Override
+    public SysUser getAllByName(String username) {
+        return sysUserMapper.getAllByName(username);
+    }
+
 
     @Transactional(rollbackFor = Exception.class)
     @Override

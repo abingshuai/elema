@@ -82,5 +82,7 @@ public interface SysUserService extends BaseService<SysUser, Integer> {
 
     SysUser getAllById(String id);
 
+    SysUser getAllByName(String username);
+
 
 }

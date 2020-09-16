@@ -45,6 +45,7 @@ public class GoodsController extends BaseController<Goods,Integer,IGoodsService>
     @PostMapping("saveGoods")
     public JsonResult<Goods> saveGoods(@RequestBody Goods goods){
         goods.setSellPrice((goods.getOriginPrice().multiply((goods.getDiscount().multiply(BigDecimal.valueOf(0.1))))));
+        goods.setTotalSales(0);
         goods.setDeleted(0);
         try{
             int result = goodsService.saveGoods(goods);

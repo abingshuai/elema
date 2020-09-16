@@ -26,7 +26,7 @@ public class OrderItem {
 
     private BigDecimal goodsPrice;
 
-    private Byte deleted;
+    private Integer deleted;
 
     private Long creator;
 
@@ -118,11 +118,11 @@ public class OrderItem {
         this.goodsPrice = goodsPrice;
     }
 
-    public Byte getDeleted() {
+    public Integer getDeleted() {
         return deleted;
     }
 
-    public void setDeleted(Byte deleted) {
+    public void setDeleted(Integer deleted) {
         this.deleted = deleted;
     }
 

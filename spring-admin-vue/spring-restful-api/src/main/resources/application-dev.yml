@@ -1,17 +1,17 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/dms1?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=GMT%2B8
-    username: root
-    password: lzblzb
+    url: jdbc:mysql://42.194.198.168:3306/elema?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=GMT%2B8
+    username: mysql
+    password: 123456@ffcs
     platform: mysql
     type: com.zaxxer.hikari.HikariDataSource
 
   redis:
     database: 0
-    host: localhost
+    host: 42.194.198.168
     port: 6379
-    timeout: 2000
+    timeout: 50000
     #password: 123456
     lettuce:
       pool:

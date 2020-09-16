@@ -20,4 +20,6 @@ public interface IOrderService extends BaseService<Order, Integer> {
     BigDecimal getOrderPrice();
 
     List<Order> getOrderByStatus(String userId, Integer status);
+
+    int updateOrderStatus(String userId, String orderNo, Integer status);
 }

@@ -16,8 +16,8 @@ public class SnowFlakeUtils {
 
     private final static SnowFlake SNOW_FLAKE = new SnowFlake(2, 3);
 
-    public static long getId() {
-        return SNOW_FLAKE.nextId();
+    public static String getId() {
+        return String.valueOf(SNOW_FLAKE.nextId());
     }
 
     static class SnowFlake {

@@ -23,4 +23,6 @@ public interface OrderMapper extends BaseMapper<Order, Integer> {
     BigDecimal getOrderPriceByDate(@Param("begin") Date begin,@Param("end") Date end);
 
     List<Order> getOrderByStatus(String userId, Integer status);
+
+    int updateOrderStatus(String userId, String orderNo, Integer status);
 }

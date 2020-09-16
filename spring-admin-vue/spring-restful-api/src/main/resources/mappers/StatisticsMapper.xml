@@ -24,7 +24,7 @@
     insert into tb_statistics
     (date,user_count,goods_count,order_count,sales_volume,sales_quantity,status,deleted,creator,create_time,modifier,last_update_time)
     values
-    (#{date},#{userCount},#{goodsCount},#{orderCount},#{salesVolume},#{salesQuantity},#{status},#{deleted},#{creator},#{createTime},#{modifier},#{lastUpdateTime},)
+    (#{date},#{userCount},#{goodsCount},#{orderCount},#{salesVolume},#{salesQuantity},#{status},#{deleted},#{creator},#{createTime},#{modifier},#{lastUpdateTime})
   </insert>
   <select id="selectPerWeek" resultMap="BaseResultMap">
     select * from tb_statistics where deleted = 0 order by date desc limit 7

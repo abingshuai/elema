@@ -68,4 +68,10 @@ public class OrderServiceImpl extends BaseServiceImpl<Order,Integer, OrderMapper
     public List<Order> getOrderByStatus(String userId, Integer status) {
         return orderMapper.getOrderByStatus(userId,status);
     }
+
+    @Override
+    public int updateOrderStatus(String userId, String orderNo, Integer status) {
+        return orderMapper.updateOrderStatus(userId,orderNo,status);
+    }
+
 }

@@ -137,6 +137,21 @@ export function showGoodsStatus(state) {
   return result
 }
 
+export function showOrderStatus(state) {
+// 判断状态是什么类型的
+  let result = ''
+  if (state === 1) {
+    result = '待消费'
+  } else if(state === 2){
+    result = '已支付'
+  } else if(state == 3){
+    result = '已完成'
+  } else {
+    result = '已退款'
+  }
+  return result
+}
+
 // 状态 显示过滤器
 export function formatDateTime(time) {
   var date = new Date(time)

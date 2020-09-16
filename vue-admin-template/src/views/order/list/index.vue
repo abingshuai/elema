@@ -97,7 +97,7 @@
         <el-table-column prop="totalQuantity" label="商品总数量" />
         <el-table-column label="订单状态" width="70">
           <template slot-scope="scope">{{
-            scope.row.status | showGoodsStatus
+            scope.row.status | showOrderStatus
             }}</template>
         </el-table-column>
         <el-table-column label="创建时间">

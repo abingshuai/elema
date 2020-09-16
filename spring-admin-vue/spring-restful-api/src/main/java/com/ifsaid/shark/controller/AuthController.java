@@ -5,7 +5,9 @@ import com.ifsaid.shark.common.jwt.JwtUser;
 import com.ifsaid.shark.service.SysUserService;
 import com.ifsaid.shark.service.VerifyCodeService;
 import com.ifsaid.shark.util.JsonResult;
+import com.ifsaid.shark.vo.LoginFrontUser;
 import com.ifsaid.shark.vo.LoginUser;
+import com.ifsaid.shark.vo.TokenUserVo;
 import com.ifsaid.shark.vo.TokenValue;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -70,6 +72,30 @@ public class AuthController {
             // 登录成功后，就从 redis 中删除验证码
             verifyCodeService.deleteImageVerifyCode(user.getCodeKey());
             return JsonResult.success("登录成功", tokenValue);
+        } catch (AuthenticationException ex) {
+            log.error(ex.getMessage());
+            return JsonResult.fail("用户名或密码错误");
+        }
+    }
+
+
+    @ApiOperation(value = "前端用户登录认证", notes = "前端用户登录认证")
+    @PostMapping("/frontlogin")
+    public JsonResult<TokenUserVo> login(@RequestBody @Validated LoginFrontUser user, BindingResult br) {
+        try {
+            System.out.println(user+"#############");
+            String jwtToken = sysUserService.login(user.getUsername(), user.getPassword());
+            TokenValue tokenValue = TokenValue.builder()
+                    .header(jwtTokenUtils.getTokenHeader())
+                    .value(jwtToken)
+                    .prefix(jwtTokenUtils.getTokenHead())
+                    .expiration(jwtTokenUtils.getExpiration())
+                    .build();
+
+            TokenUserVo tokenUserVo = new TokenUserVo();
+            tokenUserVo.setTokenValue(tokenValue);
+            tokenUserVo.setUser(sysUserService.getAllByName(user.getUsername()));
+            return JsonResult.success("登录成功", tokenUserVo);
         } catch (AuthenticationException ex) {
             log.error(ex.getMessage());
             return JsonResult.fail("用户名或密码错误");

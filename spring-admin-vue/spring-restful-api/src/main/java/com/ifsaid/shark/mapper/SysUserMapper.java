@@ -55,4 +55,6 @@ public interface SysUserMapper extends BaseMapper<SysUser, Integer> {
     Long getUserCount();
 
     SysUser getAllById(String id);
+
+    SysUser getAllByName(String username);
 }

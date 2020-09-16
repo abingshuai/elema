@@ -50,6 +50,7 @@
         email,
         nickname,
         `password`,
+        phone,
         gender,
         birthday,
         `status`,
@@ -58,5 +59,26 @@
         dept_id AS deptId
         FROM
         tb_sys_user
+        where uid = #{id}
+    </select>
+
+    <select id="getAllByName" parameterType="java.lang.String" resultType="SysUser">
+        SELECT
+        uid,
+        avatar,
+        username,
+        email,
+        nickname,
+        `password`,
+        phone,
+        gender,
+        birthday,
+        `status`,
+        create_time AS createTime,
+        last_update_time AS lastUpdateTime,
+        dept_id AS deptId
+        FROM
+        tb_sys_user
+        where username = #{username}
     </select>
 </mapper>

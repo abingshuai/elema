@@ -18,4 +18,6 @@ public interface GoodsMapper extends BaseMapper<Goods,Integer> {
     Long getGoodsCount();
 
     List<Goods> getAllByTypeId(Integer typeId);
+
+    Goods findAllById(Integer goodsId);
 }

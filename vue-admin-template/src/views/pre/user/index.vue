@@ -39,7 +39,7 @@
               label-width="80px"
             >
               <template v-if="entity.uid != ''">
-                <el-form-item label="用户ID">
+                <el-form-item label="用户ID" prop="uid">
                   <el-input v-model="entity.uid" disabled />
                 </el-form-item>
               </template>
@@ -63,6 +63,9 @@
               </template>
               <el-form-item label="邮箱" prop="email">
                 <el-input v-model="entity.email" clearable />
+              </el-form-item>
+              <el-form-item label="手机" prop="phone">
+                <el-input v-model="entity.phone" clearable />
               </el-form-item>
               <el-form-item label="生日" prop="birthday">
                 <el-date-picker
@@ -153,6 +156,7 @@
       >
         <el-table-column prop="nickname" label="用户昵称" fixed />
         <el-table-column prop="uid" label="用户ID" width="80" />
+        <el-table-column prop="phone" label="手机号" width="80" />
         <!-- <el-table-column label="头像" width="100">
           <template slot-scope="scope">
             <div
@@ -284,6 +288,7 @@ export default {
         gender: '', // 性别
         birthday: '', // 生日
         status: 0, // 状态
+        phone: '', //电话
         deptId: 0, // 部门ID
         roles: [] // 角色列表
       },
@@ -339,6 +344,9 @@ export default {
         email: [
           { required: true, message: '邮箱不能为空', trigger: 'blur' },
           { required: true, validator: validateEmail, trigger: 'blur' }
+        ],
+        phone: [
+          { required: true, message: '手机不能为空', trigger: 'blur' },
         ],
         gender: [{ required: true, message: '性别必须选择~', trigger: 'blur' }],
         birthday: [
@@ -453,6 +461,7 @@ export default {
         gender: '', // 性别
         birthday: '', // 生日
         status: '', // 状态
+        phone: '',
         deptId: '', // 部门ID
         roles: [] // 角色列表
       }
@@ -482,6 +491,7 @@ export default {
         gender: data.gender, // 性别
         birthday: data.birthday, // 生日
         status: data.status, // 状态
+        phone: data.phone,
         deptId: data.deptId, // 部门ID
         roles: data.roles // 角色列表
       }

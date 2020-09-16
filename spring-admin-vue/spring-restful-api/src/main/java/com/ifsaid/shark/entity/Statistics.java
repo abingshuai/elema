@@ -22,7 +22,7 @@ public class Statistics {
 
     private Byte status;
 
-    private Byte deleted;
+    private Integer deleted;
 
     private Long creator;
 
@@ -98,11 +98,11 @@ public class Statistics {
         this.status = status;
     }
 
-    public Byte getDeleted() {
+    public Integer getDeleted() {
         return deleted;
     }
 
-    public void setDeleted(Byte deleted) {
+    public void setDeleted(Integer deleted) {
         this.deleted = deleted;
     }
 

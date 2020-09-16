@@ -21,4 +21,6 @@ public interface IGoodsService extends BaseService<Goods, Integer> {
     Long getGoodsCount();
 
     List<Goods> getAllByTypeId(Integer typeId);
+
+    Goods findAllById(Integer goodsId);
 }
